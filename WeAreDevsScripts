@@ -1,0 +1,294 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "WeAreDevs", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest", IntroEnabled = true, IntroText = "Loading..."})
+
+local Tab = Window:MakeTab({
+	Name = "Scripts",
+	Icon = "",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "Execute Dex Exploler",
+	Callback = function()
+        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Dex%20Explorer.txt"))()
+  	end    
+})
+
+Tab:AddToggle({
+	Name = "Fly",
+	Default = false,
+	Callback = function(Value)
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/qw1dixx/FlyWe/main/FlyAre"))()
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Aimbot",
+	Default = false,
+	Callback = function(Value)
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/qw1dixx/Aimbot/main/Aimarar"))()
+	end    
+})
+
+local Section = Tab:AddSection({
+	Name = "Aimbot Settings"
+})
+
+Tab:AddToggle({
+	Name = "Team Check",
+	Default = false,
+	Callback = function(Value)
+        _G.WRDAimbotTeamCheck = Value
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Aimbot Bypass",
+	Default = false,
+	Callback = function(Value)
+        _G.WRDAimbotBypass = Value
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Wallcheck",
+	Default = false,
+	Callback = function(Value)
+        _G.WRDAimBotWallcheck = Value
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Gravity Switch (press e to switch)",
+	Default = false,
+	Callback = function(Value)
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/qw1dixx/GravityWe/main/GravityAre"))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "Anti-AFK",
+	Callback = function()
+        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/anti-afk%20via%20autofocus.txt"))()
+  	end    
+})
+
+Tab:AddToggle({
+	Name = "Click TP (CTRL + Click)",
+	Default = false,
+	Callback = function(Value)
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/qw1dixx/ClickTPWe/main/ClickTPAre"))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "Human Flashlight",
+	Callback = function()
+        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Human%20Flashlight.txt"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Remove Legs",
+	Callback = function()
+        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Remove%20Legs.txt"))()
+  	end    
+})
+
+Tab:AddToggle({
+	Name = "Float",
+	Default = false,
+	Callback = function(Value)
+		loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Float%20Character.txt"))()
+	end    
+})
+
+Tab:AddSlider({
+	Name = "High Hips",
+	Min = 0,
+	Max = 100,
+	Default = 0,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "",
+	Callback = function(Value)
+		game:GetService("Players").LocalPlayer.Character.Humanoid.HipHeight = Value
+	end    
+})
+
+Tab:AddButton({
+	Name = "BTools",
+	Callback = function()
+        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/BTools.txt"))()
+  	end    
+})
+
+Tab:AddToggle({
+	Name = "Night Time Toggle",
+	Default = false,
+	Callback = function(Value)
+		loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Night%20Time%20Toggle.txt"))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "Limp Character",
+	Callback = function()
+        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Limp%20Character.txt"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Blockhead",
+	Callback = function()
+        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Blockhead.txt"))()
+  	end    
+})
+
+Tab:AddTextbox({
+	Name = "Highlight Player",
+	Default = "nickname123",
+	TextDisappear = true,
+	Callback = function(Value)
+		targetPlayerName = Value
+
+players = game:GetService("Players")
+targetPlayer = players:FindFirstChild(targetPlayerName) or players.LocalPlayer
+character = targetPlayer.Character
+
+selectionBox = Instance.new("SelectionBox")
+selectionBox.Parent = character.HumanoidRootPart
+selectionBox.Adornee = character.HumanoidRootPart
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Remove Arms",
+	Callback = function()
+        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Remove%20Arms.txt"))()
+  	end    
+})
+
+Tab:AddToggle({
+	Name = "Invisible",
+	Default = false,
+	Callback = function(Value)
+		loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Invisible%20Character.txt"))()
+	end    
+})
+
+Tab:AddTextbox({
+	Name = "Magnetize to Player",
+	Default = "nickname123",
+	TextDisappear = true,
+	Callback = function(Value)
+		_G.MagnetizeToTarget = Value
+
+game:GetService('RunService').Stepped:connect(function()
+   for i,v in pairs (game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+        if v:IsA("BasePart") then 
+            v.CanCollide = false
+        end
+   end
+end)
+b = Instance.new("RocketPropulsion")
+b.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+b.Target = game:GetService("Players"):FindFirstChild(_G.MagnetizeToTarget).Character.HumanoidRootPart
+b.TurnP = 20000
+b.MaxThrust = 20000
+b.MaxSpeed = 1000
+b.ThrustP = 13000
+b:Fire()
+	end	  
+})
+
+Tab:AddTextbox({
+	Name = "TP to Player",
+	Default = "nickname123",
+	TextDisappear = true,
+	Callback = function(Value)
+		targetUsername = Value
+
+players = game:GetService("Players")
+targetPlayer = players:FindFirstChild(targetUsername)
+players.LocalPlayer.Character:MoveTo(targetPlayer.Character.HumanoidRootPart.Position)
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Unlock Workspace Baseparts",
+	Callback = function()
+        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Unlock%20Workspace%20Baseparts.txt"))()
+  	end    
+})
+
+Tab:AddButton({
+	Name = "Activate WallHacks",
+	Callback = function()
+        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/WRD%20ESP.txt"))()
+  	end    
+})
+
+Tab:AddToggle({
+	Name = "Enabled",
+	Default = false,
+	Callback = function(Value)
+		_G.WRDESPEnabled = Value
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Boxes",
+	Default = false,
+	Callback = function(Value)
+		_G.WRDESPBoxes = Value
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Team Colors",
+	Default = false,
+	Callback = function(Value)
+		_G.WRDESPTeamColors = Value
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Tracers",
+	Default = false,
+	Callback = function(Value)
+		_G.WRDESPTracers = Value
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Names",
+	Default = false,
+	Callback = function(Value)
+		_G.WRDESPNames = Value
+	end    
+})
+
+Tab:AddToggle({
+	Name = "Infinite Jump",
+	Default = false,
+	Callback = function(Value)
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/qw1dixx/InfJumpWe/main/InfJumpAre"))()
+	end    
+})
+
+Tab:AddButton({
+	Name = "Infinity Yield",
+	Callback = function()
+        loadstring(game:HttpGet("https://cdn.wearedevs.net/scripts/Infinite%20Yield.txt"))()
+  	end    
+})
+
+OrionLib:MakeNotification({
+	Name = "WeAreDevs",
+	Content = "Loaded!",
+	Image = "",
+	Time = 5
+})
+
+OrionLib:Init()
